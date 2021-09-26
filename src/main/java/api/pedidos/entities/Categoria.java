@@ -27,12 +27,6 @@ public class Categoria implements Serializable {
     @Column(name = "nome")
     private String nome;
 
-    //RELACIONAMENTOS
-    @Getter
-    @Setter
-    @ManyToMany(mappedBy = "categorias") //nome do atributo ddo outro lado onde o mapeamento foi feito
-    private List<Produto> produtos = new ArrayList<>();
-
 
     public Categoria(Long id, String nome) {
         this.id = id;
