@@ -1,5 +1,6 @@
 package api.pedidos.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,8 +33,10 @@ public class Produto implements Serializable {
     private Double preco;
 
     //RELACIONAMENTOS
+    /*
+    * COMENTÁIO 01: As coleções não precisam de método set, uma vez que a inserção dos dados será feita pelo métodonativo da lista*/
+    @JsonIgnore
     @Getter
-    @Setter
     @ManyToMany
     @JoinTable(
             name = "tb_produto_categoria",

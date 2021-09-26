@@ -46,7 +46,6 @@ public class Config implements CommandLineRunner {
                 "Lazer"
         );
 
-        repositorioCategoria.saveAll(Arrays.asList(categoria1, categoria2, categoria3, categoria4, categoria5));
 
         //POPULANDO PRODUTO
         Produto produto1 = new Produto(
@@ -79,21 +78,19 @@ public class Config implements CommandLineRunner {
 
         /*
         * A tabela Produto possui a referência (JoinTable) para a terceira tabela "produto_tegoria", logo
-        * a operação abaixo é obrigatória para que a tabela "produto_tegoria" seja populada com as relações de
+        * a operação abaixo é obrigatória para que a tabela "produto_tegoria" sej apopulada com as relações de
         * produto com categoria."
-        * */
-
-        /*
-        * A operação abaixo é obrigatória quando se deseja popular a terceira tabela
-        *
         * */
         produto1.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
         produto2.getCategorias().addAll(Arrays.asList(categoria1, categoria2));
         produto3.getCategorias().addAll(Arrays.asList(categoria3));
         produto4.getCategorias().addAll(Arrays.asList(categoria3));
         produto5.getCategorias().addAll(Arrays.asList(categoria4));
-        
 
+
+
+
+        repositorioCategoria.saveAll(Arrays.asList(categoria1, categoria2, categoria3, categoria4, categoria5));
         repositorioProduto.saveAll(Arrays.asList(produto1, produto2, produto3, produto4, produto5, produto6));
 
 

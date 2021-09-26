@@ -1,5 +1,6 @@
 package api.pedidos.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 
@@ -26,6 +27,12 @@ public class Categoria implements Serializable {
     @Setter
     @Column(name = "nome")
     private String nome;
+
+    //RELACIONAMENTOS
+    //Este mapeamento é necessário apenas para relacionamentos bidirecionais
+    @Getter
+    @ManyToMany(mappedBy = "categorias") //nome do atributo ddo outro lado onde o mapeamento foi feito
+    private List<Produto> produtos = new ArrayList<>();
 
 
     public Categoria(Long id, String nome) {
