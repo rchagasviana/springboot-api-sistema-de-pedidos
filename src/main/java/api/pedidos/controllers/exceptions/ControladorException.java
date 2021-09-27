@@ -21,10 +21,12 @@ public class ControladorException {
     @ExceptionHandler(ObjetoNaoEncontradoException.class) //Trata exceções com objetos desse tipo
     public ResponseEntity<ModeloErroPadrao> objetoNaoEncontrado(ObjetoNaoEncontradoException objetoLancadoPeloService, HttpServletRequest requisicao) {
 
-        String dadosDaRequisicao = "PROTOCOLO:"
+       /* String dadosDaRequisicao = "PROTOCOLO:"
                 + requisicao.getProtocol() + "--" +
                 "MÉTODO:" + requisicao.getMethod() + "--" +
-                "URI:" + requisicao.getRequestURI();
+                "URI:" + requisicao.getRequestURI();*/
+
+        String dadosDaRequisicao = "URI:" + requisicao.getRequestURI();
 
         ModeloErroPadrao erro = new ModeloErroPadrao(
                 HttpStatus.NOT_FOUND.value(), //o código de erro http. Neste caso, retornará o 404

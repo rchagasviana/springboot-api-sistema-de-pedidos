@@ -15,14 +15,17 @@ public class CategoriaService {
     @Autowired
     private CategoriaRepository repositorio;
 
+    public Categoria buscarPorId(Long id) {
+        Optional<Categoria> categoria = repositorio.findById(id);
+        return categoria.orElseThrow(
+                //() -> new ObjetoNaoEncontradoException("Categoria de Id=" + id + " não encontrada! " + ", Tipo objeto: " + Categoria.class.getName()));
+                () -> new ObjetoNaoEncontradoException("Id " + id + " não encontrado!")
+        );
+    }
 
     public List<Categoria> buscarTodas() {
         return repositorio.findAll();
     }
 
-    public Categoria buscarPorId(Long id) {
-        Optional<Categoria> categoria = repositorio.findById(id);
-        return categoria.orElseThrow(
-                () -> new ObjetoNaoEncontradoException("Categoria de Id=" + id +" não encontrada! " + ", Tipo objeto: " + Categoria.class.getName()));
-    }
+
 }

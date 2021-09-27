@@ -1,13 +1,11 @@
 package api.pedidos.controllers;
 
 import api.pedidos.entities.Cidade;
+import api.pedidos.entities.Produto;
 import api.pedidos.services.CidadeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,12 +14,19 @@ import java.util.List;
 public class CidadeController {
 
     @Autowired
-    private CidadeService cidadeService;
+    private CidadeService servico;
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public ResponseEntity<Cidade> buscarPorId(@PathVariable Long id) {
+        Cidade cidade = new Cidade();
+        cidade = servico.buscarPorId(id);
+        return ResponseEntity.ok().body(cidade);
+    }
 
     //@GetMapping -> já define o tipo de método
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<List<Cidade>> listarTodas() {
-        List<Cidade> lista = cidadeService.buscarTodas();
+        List<Cidade> lista = servico.buscarTodas();
         return ResponseEntity.ok().body(lista);
     }
 
