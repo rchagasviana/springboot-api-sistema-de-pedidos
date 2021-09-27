@@ -1,8 +1,9 @@
 package api.pedidos.entities;
 
-
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -10,43 +11,43 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@EqualsAndHashCode
+
 @NoArgsConstructor
 @Entity
-@Table(name = "tb_categoria")
-public class Categoria implements Serializable {
+@Table(name = "tb_estado")
+public class Estado implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Getter
     @Setter
     @Id
-    @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Getter
     @Setter
-    @Column(name = "nome")
+    @Column(name = "nome", nullable = false)
     private String nome;
 
-    //RELACIONAMENTOS
-    //Este mapeamento é necessário apenas para relacionamentos bidirecionais
+    //RELACIONAMENTO BIDIRECIONAL
     @Getter
-    @ManyToMany(mappedBy = "categorias") //nome do atributo ddo outro lado onde o mapeamento foi feito
-    private List<Produto> produtos = new ArrayList<>();
+    @OneToMany(mappedBy = "estado") //nome do atributo da outra entidade que mapeou cidades
+    private List<Cidade> cidades = new ArrayList<>();
 
 
-    public Categoria(Long id, String nome) {
+    public Estado(Long id, String nome) {
         this.id = id;
         this.nome = nome;
     }
+
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Categoria categoria = (Categoria) o;
-        return id.equals(categoria.id);
+        Estado estado = (Estado) o;
+        return id.equals(estado.id);
     }
 
     @Override
