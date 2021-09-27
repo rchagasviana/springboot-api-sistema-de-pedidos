@@ -2,7 +2,7 @@ package api.pedidos.services;
 
 import api.pedidos.entities.Categoria;
 import api.pedidos.repositories.CategoriaRepository;
-import api.pedidos.services.exceptions.ObjectNotFoundException;
+import api.pedidos.services.exceptions.ObjetoNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +23,6 @@ public class CategoriaService {
     public Categoria buscarPorId(Long id) {
         Optional<Categoria> categoria = repositorio.findById(id);
         return categoria.orElseThrow(
-                () -> new ObjectNotFoundException("Categoria não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName()));
-
+                () -> new ObjetoNaoEncontradoException("Categoria de Id=" + id +" não encontrada! " + ", Tipo objeto: " + Categoria.class.getName()));
     }
 }

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 
 @NoArgsConstructor
@@ -22,6 +23,10 @@ public class ModeloErroPadrao implements Serializable {
     @Getter
     @Setter
     private Long tempo;
+
+    @Getter
+    @Setter
+    private String dadosRequisicao;
 
 
 
