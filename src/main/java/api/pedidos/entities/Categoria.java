@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-@EqualsAndHashCode
+
 @NoArgsConstructor
 @Entity
 @Table(name = "tb_categoria")
