@@ -15,7 +15,7 @@ class ProdutoServiceTest {
     private ProdutoService servico;
 
     @Test
-    public void buscarPorId() {
+    public void buscarPorIdTest() {
         Produto produto = new Produto();
         produto = servico.buscarPorId(1L);
         assertEquals("Notebook", produto.getNome());
@@ -23,8 +23,8 @@ class ProdutoServiceTest {
     }
 
     @Test
-    public void listarTodos() {
-        servico.listarTodos();
+    public void buscarTodosTest() {
+        servico.buscarTodos();
     }
 
 

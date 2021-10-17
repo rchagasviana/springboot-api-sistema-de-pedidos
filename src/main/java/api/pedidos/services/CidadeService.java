@@ -1,7 +1,6 @@
 package api.pedidos.services;
 
 import api.pedidos.entities.Cidade;
-import api.pedidos.entities.Produto;
 import api.pedidos.repositories.CidadeRepository;
 import api.pedidos.services.exceptions.ObjetoNaoEncontradoException;
 import org.springframework.beans.factory.annotation.Autowired;

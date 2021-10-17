@@ -35,7 +35,7 @@ public class Produto implements Serializable {
 
     //RELACIONAMENTOS
     /*
-    * COMENTÁIO 01: As coleções não precisam de método set, uma vez que a inserção dos dados será feita pelo métodonativo da lista*/
+    * COMENTÁIO 01: As coleções não precisam de método set, uma vez que a inserção dos dados será feita pelo método nativo da lista*/
     @JsonIgnore
     @Getter
     @ManyToMany

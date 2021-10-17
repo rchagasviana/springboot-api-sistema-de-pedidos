@@ -1,13 +1,8 @@
 package api.pedidos.config;
 
-import api.pedidos.entities.Categoria;
-import api.pedidos.entities.Cidade;
-import api.pedidos.entities.Estado;
-import api.pedidos.entities.Produto;
-import api.pedidos.repositories.CategoriaRepository;
-import api.pedidos.repositories.CidadeRepository;
-import api.pedidos.repositories.EstadoRepository;
-import api.pedidos.repositories.ProdutoRepository;
+import api.pedidos.entities.*;
+import api.pedidos.entities.enums.TipoCliente;
+import api.pedidos.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +25,12 @@ public class Config implements CommandLineRunner {
 
     @Autowired
     private CidadeRepository repositorioCidade;
+
+    @Autowired
+    private EnderecoRepository repositorioEndereco;
+
+    @Autowired
+    private ClienteRepository repositorioCliente;
 
     @Override
     public void run(String... args) throws Exception {
@@ -172,6 +173,58 @@ public class Config implements CommandLineRunner {
         );
 
         repositorioCidade.saveAll(Arrays.asList(cidade1, cidade2, cidade3, cidade4, cidade5, cidade6, cidade7, cidade8));
+
+
+        //POPULANDO A TABELA CLIENTE
+        Cliente cliente01 = new Cliente(
+                null,
+                "Rafael",
+                "rchagas.sdi@gmail.com",
+                "04309898798",
+                TipoCliente.PESSOA_FISICA
+        );
+        Cliente cliente02 = new Cliente(
+                null,
+                "Empresa de Informática",
+                "empresadeinformatica@gmail.com",
+                "0947648748756",
+                TipoCliente.PESSOA_JURIDICA
+        );
+        //Fazendo inserção na tabela Telefone
+        cliente01.getTelefone().add("(98)3232-3232");
+        cliente01.getTelefone().add("(98)9898-9898");
+
+        cliente02.getTelefone().add("(98)0800-0800");
+
+        repositorioCliente.saveAll(Arrays.asList(cliente01, cliente02));
+
+        //Populando endereço
+        Endereco endereco01 = new Endereco(
+                null,
+                "Rua x",
+                "20",
+                "Quadra 01",
+                "Bairro x",
+                "65000-00",
+                cliente01,
+                cidade1
+        );
+
+        Endereco endereco02 = new Endereco(
+                null,
+                "Rua ABC",
+                "38",
+                "Próximo à praça da flores",
+                "Bairro ABC",
+                "68000-00",
+                cliente02,
+                cidade4
+        );
+
+        repositorioEndereco.saveAll(Arrays.asList(endereco01, endereco02));
+
+
     }
+
 
 }

@@ -1,5 +1,6 @@
 package api.pedidos.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -49,6 +50,7 @@ public class Endereco implements Serializable {
     /*
      * 1) Cliente (1:n) Endereço
      * */
+    @JsonIgnore
     @Getter
     @Setter
     @ManyToOne

@@ -19,6 +19,12 @@ public class CategoriaController {
     private CategoriaService service;
 
     //@GetMapping -> já define o tipo de método
+    @RequestMapping(method = RequestMethod.GET)
+    public List<Categoria> buscarTodas() {
+        return service.buscarTodas();
+    }
+
+    //@GetMapping -> já define o tipo de método
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
         Categoria categoria = new Categoria();
@@ -26,11 +32,7 @@ public class CategoriaController {
         return ResponseEntity.ok().body(categoria);
     }
 
-    //@GetMapping -> já define o tipo de método
-    @RequestMapping(method = RequestMethod.GET)
-    public List<Categoria> listarTodas() {
-        return service.buscarTodas();
-    }
+
 
 
 }

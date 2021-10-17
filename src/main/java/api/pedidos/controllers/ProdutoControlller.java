@@ -20,22 +20,23 @@ public class ProdutoControlller {
     @Autowired
     private ProdutoService servico;
 
+    //@GetMapping -> já define o tipo de método
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<?> listarTodos() {
+        List<Produto> listaDeProdutos = new ArrayList<>();
+        listaDeProdutos = servico.buscarTodos();
+        return ResponseEntity.ok().body(listaDeProdutos);
+    }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<Produto> listarPorId(@PathVariable Long id) {
         Produto produto = new Produto();
         produto = servico.buscarPorId(id);
         return ResponseEntity.ok().body(produto);
     }
 
 
-    //@GetMapping -> já define o tipo de método
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<?> listarTodos() {
-        List<Produto> listaProdutos = new ArrayList<>();
-        listaProdutos = servico.listarTodos();
-        return ResponseEntity.ok().body(listaProdutos);
-    }
+
 
 
 }

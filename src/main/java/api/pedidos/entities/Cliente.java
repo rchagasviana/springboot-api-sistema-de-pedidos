@@ -46,6 +46,7 @@ public class Cliente implements Serializable {
      *
      * Este é necessário apenas para quando se deseja fazer relacionamento bidirecional
      * */
+    @Getter
     @OneToMany(mappedBy = "cliente")
     private List<Endereco> enderecos = new ArrayList<>();
 
@@ -56,6 +57,7 @@ public class Cliente implements Serializable {
      * Cliente. Por esse motivo escolheu-se usar Telefone como uma Coleção do tipo Set uma vez que este
      * tipo não permite elementos repetidos e uma classe para representar a tabela..
      */
+    @Getter
     @ElementCollection
     @CollectionTable(name = "tb_telefone")
     private Set<String> telefone = new HashSet<>();

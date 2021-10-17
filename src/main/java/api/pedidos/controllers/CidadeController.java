@@ -16,19 +16,21 @@ public class CidadeController {
     @Autowired
     private CidadeService servico;
 
+    //@GetMapping -> já define o tipo de método
+    @RequestMapping(method = RequestMethod.GET)
+    public ResponseEntity<List<Cidade>> listarTodas() {
+        List<Cidade> listaDeCidades = servico.buscarTodas();
+        return ResponseEntity.ok().body(listaDeCidades);
+    }
+
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public ResponseEntity<Cidade> buscarPorId(@PathVariable Long id) {
+    public ResponseEntity<Cidade> listarPorId(@PathVariable Long id) {
         Cidade cidade = new Cidade();
         cidade = servico.buscarPorId(id);
         return ResponseEntity.ok().body(cidade);
     }
 
-    //@GetMapping -> já define o tipo de método
-    @RequestMapping(method = RequestMethod.GET)
-    public ResponseEntity<List<Cidade>> listarTodas() {
-        List<Cidade> lista = servico.buscarTodas();
-        return ResponseEntity.ok().body(lista);
-    }
+
 
 
 }

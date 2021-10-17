@@ -18,6 +18,10 @@ public class ProdutoService {
     private ProdutoRepository repositorio;
 
 
+    public List<Produto> buscarTodos() {
+        return repositorio.findAll();
+    }
+
     public Produto buscarPorId(Long id) {
         Optional<Produto> produto = repositorio.findById(id);
         //return produto.orElse(null);
@@ -25,11 +29,6 @@ public class ProdutoService {
                 //  () -> new ObjetoNaoEncontradoException("Produto de Id=" + id + " não encontrado! " + ", Tipo objeto: " + Produto.class.getName())
                 () -> new ObjetoNaoEncontradoException("Id " + id + " não encontrado!")
         );
-    }
-
-
-    public List<Produto> listarTodos() {
-        return repositorio.findAll();
     }
 
 
